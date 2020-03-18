@@ -1,0 +1,33 @@
+version: "~> 1.0"
+os: linux
+language: shell
+services: docker
+notifications:
+  email:
+    on_success: never
+    on_failure: never
+  slack:
+    if: branch = master
+    rooms:
+      secure: IvPxboLCvxBJVwd+yLAzA2eACO/NhD+E1i2p6EljzPNx//gaHJM0AX4P1JZq8sTZ+NSaSWX9KZeZXqQFtOYjQAbg4RszFq8gxGPCdDHPyDz+IPPW3QlsEGupEy1lB14xO08tA7o4/Q92jIJ35nXJr0nzvFKinzn+C8M6wQUzLHHo82kw1kI9BjJyy40zJC6QJAn8qan7NsJ2qIUqRSXV9uO5+J0R5feRoWMqj33WJbTHEsQP9B022iC7lULbSkJujW4pCr6ZmPaz2FVzS0Gm9RhlY/aS+LUfzC6gCPyASsDFALrI9xBPqbjse6cYIAyQdOw6PeD78nBLy9FkdSy5IIc1JwXm6cgKlquNfXSm636kZKiFsX/aDmEJkFo/QLDSOg6IbrGJY3NMLGFsyq1atj8kvdTlJHtgo6POnH51nczeF23Tun13RjYNpNWcDAjwe9yBvGJl8VUtVBeVvrYgkWEw2ULHafIUGXlkuL8LYxknov5s1hsz7/Fxx68k3c+av892PE98lUlhc1HcrO79J/S7izUzwKlngCJUCrF7EZBycrbJ2vWzPOwyWNQqkMgON6EAWj8memROSNL25fAyZ2rWefD8pZzJYUNmEdekd99jcHFSpGftUcfhzcv9OVjsQojuT2iQf4swd3gOEc8eYEK7m3hP2TedFtRA/CQgBBE=
+    template:
+    - "%{commit_subject}"
+    - build <%{build_url}|#%{build_number}> (<%{compare_url}|%{commit}>) @%{branch}
+    - by %{author} %{result} in %{duration}
+    on_success: change
+    on_failure: always
+env:
+  global:
+  - secure: D1tB0ezRk9CSi95DDnu8pANVJ+v7otreT26b6E0iHFqYlOnW9e4MuuH4V/hj/qG/D9wyGpdQpvbzU5hraFjzedf45SFNMS8Ywr1668ZnGceSaf3/QSn40z0svsw62JRYAicO1xK64yE8T8uhtA/M5oDs5tP6OAcgH+MwqUWfiiGG7dRbPWucndeYA239XrbknUk5B89u4Ojk/UFHt7w4Vrd6MW+ZcF5hd5x1cGmKl6Yh90o+qsB+qSL6bXKgHvC0/w0UXsaV+PRDv7Z9OFGdnvZ4PulFf8CJ2iJJVwzP4Snr/JF4m+CLYJDBFjEZ8xc4bUFUb9pmpXFsjjOSVHQqCujGv4JfCqApO/9dWmfVq8L04HuIQXHAszd/oWImNfmYvHMHKOlDUW62oAddSKxBZ/DRKifPYlTRedAA2wgzN0otjYE1lWLptPxpl/i6USPbC7V2pcSMMrAmyISSf5vgBT+GuBMZj6qZHgbtLjNsR7iNzEpvaxYT4IH9aIOmaDQirpDWFkzHvq1byw99EjTG+CRaiyWSjHvSFmhJTGYbba54qk3Vq7hMpwimj+a+TSkk2bnC9UhcfJb5Eb/eR0uDKhhoypsVJcw6bXBoLHWPDnUn++X/YqQorZAB0OJq1thqBPxNiU4aWzDcVh9wyAC8VX1XUvajoKyqPHV8fX0FZ4w=
+  - secure: WimTygRClZetJ7HNGJ51VbDB+8eUZBcq9bcd3y10Y2hpulBA/JFyo2GPuEOuhnyh0QrL4tf6MQXSB6GK2f/ewKL47Iv0Hw34GUTpCr1knR1oa8IY6wEV6EfQGa/UbmonA+UTmCgk98G38YO1TOEasC301AxZoAm82ieL36ygwp/dV9iByH0qZj8ApKy/QtmRtT5X+O3/HMTIFJG9QlDYey687D7KfRfKjYrwkEK7OeJ+MnmdXpxlwprJcwtkA+T2HnABAme0LCO1RWzt9xoEogr24+TtrJJPDq5NvV7sRjowAf3uTne6tU7xnXbeh3wYxv/3cJExgoynHQQxPq1Pmj691a19s2r+ANCL+iRclEfv1/Gd3yTFDUNkfiE2uYpr6zKVt70W4pYnqxzRVCT7RakHsHYKLkcYOrRMCWhvEoqqpbN0wNk74/SJgmsDXI3oveXzSCBZGFYNu490qEgWDjssojyVGa7UaEFCnYLyZt4xaas7n4C4VI9zxqnDwVAOygZQfkdrX5kIBgGkqzaUQrI6RUx3dTkPNoTpq/r6bbzXWwOg8VUv5urO8pTA1v1BM5Lh9DmWV1glOHXykwWoIrl8Na2MBOYe1Zn2Uyl6k2l4fJGA53a5EUK9YSp6PJmH0JXDWGQ34e+dXXPlsBnBWtvNPy08a8kRDabHY8kWrUA=
+before_install: curl -sSL https://raw.githubusercontent.com/ckaserer/bash-script-collection/master/bash-fetch-script-collection.sh | bash
+script: ".ci/test.sh"
+deploy:
+  provider: script
+  script: bash bash-script-collection/container-image-push.sh \
+    --image gepardec/j2cli \
+    --username ${REGISTRY_USER} \
+    --password ${REGISTRY_PASS}
+  skip_cleanup: true
+  on:
+    branch: master
