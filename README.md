@@ -422,8 +422,6 @@ def extra_tests():
         custom_odd=lambda n: True if (n % 2) else False
     )
 
-# 
-
 ```
 ---
 
