@@ -1,5 +1,5 @@
-[![](https://img.shields.io/travis/com/ckaserer/docker-j2cli/master?style=flat-square)](https://travis-ci.com/ckaserer/docker-j2cli)
-![Docker Pulls](https://img.shields.io/docker/pulls/ckaserer/j2cli?color=brightgreen&style=flat-square)
+[![](https://img.shields.io/travis/com/gepardec/docker-j2cli/master?style=flat-square)](https://travis-ci.com/gepardec/docker-j2cli)
+![Docker Pulls](https://img.shields.io/docker/pulls/gepardec/j2cli?color=brightgreen&style=flat-square)
 ![gplv3](https://img.shields.io/badge/license-GPL%20v3.0-brightgreen.svg?style=flat-square)
 ![Maintenance](https://img.shields.io/maintenance/yes/2020?style=flat-square)
 <br>
